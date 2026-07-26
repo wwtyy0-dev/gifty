@@ -52,7 +52,7 @@ module.exports = async function handler(req, res) {
       { name: "📜 User Agent", value: "```" + ua.substring(0, 150) + "```", inline: false }
     ],
     footer: {
-      text: `Público - ${endpoint} · ${new Date().toLocaleString()}`
+      text: `${new Date().toLocaleString()}`
     },
     timestamp: new Date().toISOString()
   };
