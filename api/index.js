@@ -50,7 +50,6 @@ module.exports = async function handler(req, res) {
       { name: "🌍 Navegador", value: browser, inline: false },
       { name: "🖥️ Tipo", value: device, inline: false },
       { name: "📜 User Agent", value: "```" + ua.substring(0, 150) + "```", inline: false }
-      { name: "📌 Endpoint", value: "${endpoint}"}
     ],
     footer: {
       text: `Público - ${endpoint} · ${new Date().toLocaleString()}`
